@@ -10,7 +10,7 @@ jobs:
           echo "ls -la"
           ls -la
       - name: Clone
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: List after
         run: |
           echo "ls -la"
