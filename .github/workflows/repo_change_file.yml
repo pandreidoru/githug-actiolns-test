@@ -10,7 +10,7 @@ jobs:
           echo "ls -la"
           ls -la
       - name: Clone
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Setup repo
         run: |
           git config --global user.email "my-bot@bot.com"
@@ -25,7 +25,6 @@ jobs:
         run: |
           echo "Updating commits.txt ..."
           echo ${{ github.sha }} >> commits.txt
-          ls -a
           git add -A
           git commit -m "Update commits.txt with the current commit"
           git push
