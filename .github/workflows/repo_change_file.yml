@@ -15,6 +15,7 @@ jobs:
         run: |
           git config --global user.email "my-bot@bot.com"
           git config --global user.name "my-bot"
+          git checkout master
           git branch --set-upstream-to=origin/master
       - name: List after
         run: |
