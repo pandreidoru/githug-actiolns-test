@@ -5,13 +5,12 @@ jobs:
   update-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone
       - name: List before
         run: |
           echo "ls -la"
           ls -la
       - name: Clone
-        uses: actions/hello-world-javascript-action@v1
+        uses: actions/checkout@v1
       - name: List after
         run: |
           echo "ls -la"
