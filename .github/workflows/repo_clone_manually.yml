@@ -1,0 +1,26 @@
+name: Clone manually
+on: push
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List before
+        run: |
+          echo "ls -la"
+          ls -la
+      - name: Clone
+        run: |
+          echo "Cloning ..."
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "my-bot@bot.com"
+          git config --global user.name "my-bot"
+          git fetch
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull
+      - name: List after
+        run: |
+          echo "ls -la"
+          ls -la

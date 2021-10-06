@@ -1,24 +1,19 @@
-name: Change repo files
+name: Change repo file
 on: push
 
 jobs:
-  create-file:
+  update-file:
     runs-on: ubuntu-latest
     steps:
       - name: Clone
+      - name: List before
         run: |
-          echo "PWD: $PWD"
           echo "ls -la"
           ls -la
-          echo "Cloning ..."
-          git init
-          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
-          git config --global user.email "my-bot@bot.com"
-          git config --global user.name "my-bot"
-          git fetch
-          git checkout master
-          git branch --set-upstream-to=origin/master
-          git pull
+      - name: Clone
+        uses: actions/hello-world-javascript-action@v1
+      - name: List after
+        run: |
           echo "ls -la"
           ls -la
       - name: Update commits.txt
