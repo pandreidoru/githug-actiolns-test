@@ -1,0 +1,29 @@
+name: Change repo files
+on: push
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update commits.txt
+        run: |
+          echo "PWD: $PWD"
+          echo "ls -la"
+          ls -la
+          echo "Cloning ..."
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "my-bot@bot.com"
+          git config --global user.name "my-bot"
+          git fetch
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull
+          echo "ls -la"
+          ls -la
+          echo "Updating commits.txt ..."
+          echo ${{ github.sha }} >> commits.txt
+          ls -a
+          git add -A
+          git commit -m "Update commits.txt with the current commit"
+          git push
