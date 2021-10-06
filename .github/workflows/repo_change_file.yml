@@ -1,4 +1,4 @@
-name: Change repo file
+name: Change Repo File
 on: push
 
 jobs:
@@ -11,6 +11,11 @@ jobs:
           ls -la
       - name: Clone
         uses: actions/checkout@v1
+      - name: Setup repo
+        run: |
+          git config --global user.email "my-bot@bot.com"
+          git config --global user.name "my-bot"
+          git branch --set-upstream-to=origin/master
       - name: List after
         run: |
           echo "ls -la"
