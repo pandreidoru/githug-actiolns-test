@@ -17,3 +17,11 @@ jobs:
       - name: Always run
         if: always()
         run: echo "Running always"
+      - name: Failing step with continue-on-error
+        continue-on-error: true
+  timeout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Sleep for 2 minutes
+        run: sleep 2m
