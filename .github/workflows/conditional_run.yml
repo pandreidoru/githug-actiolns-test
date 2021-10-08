@@ -17,8 +17,10 @@ jobs:
       - name: Always run
         if: always()
         run: echo "Running always"
+  continue_on_error:
+    runs-on: ubuntu-latest
+    steps:
       - name: Failing step with continue-on-error
-        if: always()
         continue-on-error: true
         run: unknown_command
       - name: Run after a failing step marked with continue-on-error true
