@@ -18,6 +18,7 @@ jobs:
         if: always()
         run: echo "Running always"
       - name: Failing step with continue-on-error
+        if: always()
         continue-on-error: true
         run: unknown_command
       - name: Run after a failing step marked with continue-on-error true
