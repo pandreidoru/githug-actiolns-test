@@ -12,6 +12,7 @@ jobs:
         if: failure()
         run: echo "Running even if the previous step failed"
       - name: Failing step 2
+        if: failure()
         run: unknown_command
       - name: Always run
         if: always()
