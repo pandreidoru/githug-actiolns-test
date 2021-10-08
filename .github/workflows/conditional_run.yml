@@ -19,6 +19,9 @@ jobs:
         run: echo "Running always"
       - name: Failing step with continue-on-error
         continue-on-error: true
+        run: unknown_command
+      - name: Run after a failing step marked with continue-on-error true
+        run: echo "Run after a failing step marked with continue-on-error true"
   timeout:
     runs-on: ubuntu-latest
     timeout-minutes: 1
