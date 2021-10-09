@@ -1,5 +1,4 @@
-name: Shell Commands
-
+name: Shell commands
 on: [push]
 
 jobs:

@@ -1,4 +1,4 @@
-name: Clone Manually
+name: Clone manually
 on: push
 
 jobs:

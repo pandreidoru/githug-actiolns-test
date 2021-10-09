@@ -1,4 +1,4 @@
-name: Change Repo File
+name: Change repository file
 on: push
 
 jobs:

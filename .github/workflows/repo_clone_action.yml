@@ -1,4 +1,4 @@
-name: Clone with Action
+name: Clone with action
 on: push
 
 jobs:
