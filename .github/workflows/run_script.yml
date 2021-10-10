@@ -1,0 +1,13 @@
+name: Run scripts from repository
+on: push
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script
+        uses: docker://alpine
+        with:
+          entrypoint: ./script.sh
+          args: arg1 arg2
