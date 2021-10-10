@@ -10,4 +10,4 @@ jobs:
         uses: docker://alpine
         with:
           entrypoint: ./script.sh
-          args: arg1 arg2
+          args: "arg1 arg2"
