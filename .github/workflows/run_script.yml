@@ -6,10 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: List cloned repository
-        run: ls -la
-      - name: List ./script.sh
-        run: cat ./script.sh
       - name: Run script
         uses: docker://node:12.14.1-alpine3.10
         with:
