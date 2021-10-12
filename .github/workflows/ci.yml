@@ -9,5 +9,9 @@ jobs:
    steps:
      - uses: actions/checkout@v2
      - name: Print
+       shell: bash
        run: |
-         echo "Test"
+         mkdir build
+         cd build
+         cmake ..
+         make -j
