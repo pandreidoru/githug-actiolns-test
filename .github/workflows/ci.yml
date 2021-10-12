@@ -8,10 +8,10 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v2
-     - name: Print
-       shell: bash
+     - name: Build
        run: |
          mkdir build
          cd build
          cmake ..
          make -j
+         ll src
