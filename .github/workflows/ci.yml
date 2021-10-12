@@ -14,4 +14,4 @@ jobs:
          cd build
          cmake ..
          make -j
-         ll src
+         ls -la src
