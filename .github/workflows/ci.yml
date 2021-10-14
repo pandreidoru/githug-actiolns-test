@@ -20,14 +20,14 @@ jobs:
           ls -la src
   slack:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+#    if: github.event_name == 'push'
     steps:
       - name: Get the current branch name
         run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
         id: branch_name
-      - name: Send a Slack notification
+      - name: 💬 Send Message to Slack 🚀
         if: github.event_name == 'push'
-        uses: archive/github-actions-slack@v2.0.0
+        uses: archive/github-actions-slack@v2.2.3
         id: notify
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
