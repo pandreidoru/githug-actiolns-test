@@ -17,9 +17,15 @@ jobs:
           cmake ..
           make -j
           ls -la src
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the current branch name
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: branch_name
       - name: Send a Slack notification
         if: github.event_name == 'push'
         uses: docker://technosophos/slack-notify
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "Merge to develop"
+          SLACK_MESSAGE: "Merge to ${{ steps.branch_name.output.branch }}"
