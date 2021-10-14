@@ -2,8 +2,6 @@ name: CI
 on:
   pull_request:
     branches: [ develop ]
-  push:
-    branches: [ develop ]
 
 jobs:
   build:
@@ -18,19 +16,3 @@ jobs:
           cmake ..
           make -j
           ls -la src
-  slack:
-    runs-on: ubuntu-latest
-#    if: github.event_name == 'push'
-    steps:
-      - name: Get the current branch name
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-        id: branch_name
-      - name: 💬 Send Message to Slack 🚀
-        uses: archive/github-actions-slack@v2.2.3
-        id: notify
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-          slack-channel: C02H9B2NTA7
-          slack-text: Hello! Event "${{ github.event_name }}" in "${{ github.repository }}, branch ${{ steps.branch_name.output.branch }}" 🤓
-      - name: Send Slack Message Result
-        run: echo "${{ steps.send-message.outputs.slack-result }}"
