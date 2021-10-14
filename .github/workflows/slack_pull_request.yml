@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the current branch name
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        run: echo "::set-output name=branch::${GITHUB_REF##*/}"
         id: branch_name
       - name: 💬 Send Message to Slack 🚀
         uses: archive/github-actions-slack@v2.2.3
