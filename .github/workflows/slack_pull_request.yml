@@ -1,4 +1,4 @@
-name: CI
+name: Slack on pull request
 on:
   pull_request:
     branches: [ develop ]
@@ -16,6 +16,6 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C02H9B2NTA7
-          slack-text: Hello! Event "${{ github.event_name }}" in "${{ github.repository }}, branch ${{ steps.branch_name.output.branch }}" 🤓
+          slack-text: Hello! Event "${{ github.event_name }}" in "${{ github.repository }}" 🤓
       - name: Slack Message Result
         run: echo "${{ steps.send-message.outputs.slack-result }}"
