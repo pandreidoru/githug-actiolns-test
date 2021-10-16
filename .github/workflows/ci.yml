@@ -9,10 +9,26 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v2
-      - name: Build
+      - name: Build C++
         run: |
-          mkdir build
+          mkdir -p build
           cd build
           cmake ..
           make -j
           ls -la src
+      - name: Cache Cargo registry
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        - name: Install Rust
+          run: |
+            rustup update ${{ matrix.rust }} --no-self-update
+            rustup default ${{ matrix.rust }}
+      - name: Build Rust
+        run: cargo build
