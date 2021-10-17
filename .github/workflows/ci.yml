@@ -26,7 +26,8 @@ jobs:
       - name: Run cargo check
         uses: actions-rs/cargo@v1
         with:
-          command: check --manifest-path rust/Cargo.toml
+          command: check
+          arg: --manifest-path rust/Cargo.toml
       - name: Run cargo test
         uses: actions-rs/cargo@v1
         with:
@@ -39,7 +40,10 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            target/
+            rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: Build Rust
-        run: cargo build --manifest-path rust/Cargo.toml
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --manifest-path rust/Cargo.toml
