@@ -23,15 +23,16 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-      - name: Run cargo check
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-          arg: --manifest-path rust/Cargo.toml
+#      - name: Run cargo check
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: check
+#          arg: --manifest-path rust/Cargo.toml
       - name: Run cargo test
         uses: actions-rs/cargo@v1
         with:
           command: test
+          args: --manifest-path rust/Cargo.toml
       - name: Rust - cache cargo registry
         uses: actions/cache@v2
         with:
