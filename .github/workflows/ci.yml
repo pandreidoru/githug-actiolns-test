@@ -38,13 +38,3 @@ jobs:
         with:
           command: test
           args: --manifest-path rust/Cargo.toml
-      - name: Rust - Restore cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            rust/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
