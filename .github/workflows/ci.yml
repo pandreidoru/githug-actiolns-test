@@ -8,11 +8,38 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v2
-      - name: Build
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: C++ - Build
         run: |
-          mkdir build
+          mkdir -p build
           cd build
           cmake ..
           make -j
           ls -la src
+      - name: Upload C++ build folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: C++ build
+          path: build
+      - name: Rust - Install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Rust - Restore cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            rust/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --manifest-path rust/Cargo.toml
