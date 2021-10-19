@@ -17,6 +17,11 @@ jobs:
           cmake ..
           make -j
           ls -la src
+      - name: Upload C++ build folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: C++ build
+          path: build
       - name: Rust - Install toolchain
         uses: actions-rs/toolchain@v1
         with:
